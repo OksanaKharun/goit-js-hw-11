@@ -94,7 +94,7 @@ async function onLoader() {
     resultPage += 1;
   await getSearch(formValue, resultPage)
     .then(data => {
-      const arrayData = data.data.hits;
+      const arrayData = data.hits;
       arrayDataLength += arrayData.length;
       createNewDomEl += test(arrayData);
       galleryEl.innerHTML = createNewDomEl;
@@ -104,4 +104,12 @@ async function onLoader() {
         Notiflix.Notify.info("We're sorry, but you've reached the end of search results.");
       } 
     })
+}
+
+function scrollToNextGroup() {
+    const { height: cardHeight } = gallery.firstElementChild.getBoundingClientRect();
+    window.scrollBy({
+        top: cardHeight,
+        behavior: "smooth",
+    });
 }
